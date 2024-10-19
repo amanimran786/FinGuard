@@ -15,9 +15,9 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/jetbrains/finguard/add-account.fxml"));
             Parent root = loader.load();
 
-            Scene scene = new Scene(root, 800, 600); // Set scene size to match your design
+            Scene scene = new Scene(root, 800, 600); // Size of Design
 
-            // Optionally add BootstrapFX stylesheet (ensure it's properly added to your project dependencies)
+            // BootstrapFX stylesheet
             // scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
             primaryStage.setTitle("FinGuard - Personal Budgeting");
