@@ -18,11 +18,12 @@ public class HelloController {
 
     @FXML
     public void initialize() {
+
         // This method will be called automatically after the FXML components are loaded
         submitButton.setOnAction(event -> {
-            // When submit button is clicked, update the label with the input from the TextField
+
             String inputText = inputField.getText();
-            welcomeLabel.setText("Welcome to Your new Bank Account, " + inputText + "!");
+            welcomeLabel.setText("Welcome to FinGuard, " + inputText + "!");
         });
     }
 }

@@ -11,22 +11,18 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Load FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/jetbrains/finguard/hello-view.fxml"));
+            // Load FXML file for Add Account page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/jetbrains/finguard/add-account.fxml"));
             Parent root = loader.load();
 
-            Scene scene = new Scene(root, 400, 300);
+            Scene scene = new Scene(root, 800, 600); // Set scene size to match your design
 
-            // Optionally add BootstrapFX stylesheet
-            scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
+            // Optionally add BootstrapFX stylesheet (ensure it's properly added to your project dependencies)
+            // scene.getStylesheets().add("org/kordamp/bootstrapfx/bootstrapfx.css");
 
             primaryStage.setTitle("FinGuard - Personal Budgeting");
             primaryStage.setScene(scene);
             primaryStage.show();
-
-            // Initialize SQLite database connection
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            dbHandler.createNewTable(); // Example usage: create a new table when the app starts
 
         } catch (Exception e) {
             e.printStackTrace();

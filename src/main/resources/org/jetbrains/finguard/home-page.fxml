@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.jetbrains.finguard.HomePageController">
+
+    <HBox spacing="20">
+        <ComboBox fx:id="accountComboBox" promptText="Select Account" />
+        <DatePicker fx:id="transactionDate" promptText="Transaction Date" />
+        <TextField fx:id="transactionAmountField" promptText="Transaction Amount" />
+        <TextField fx:id="transactionDescriptionField" promptText="Transaction Description" />
+        <Button text="Upload Transaction" onAction="#handleUploadTransaction" />
+    </HBox>
+
+    <HBox spacing="20">
+        <BarChart fx:id="monthlyBarChart">
+            <xAxis>
+                <CategoryAxis label="Date" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Amount" />
+            </yAxis>
+        </BarChart>
+
+        <BarChart fx:id="monthlySpendingChart">
+            <xAxis>
+                <CategoryAxis label="Date" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Amount" />
+            </yAxis>
+        </BarChart>
+    </HBox>
+
+    <TableView fx:id="transactionTable">
+        <columns>
+            <TableColumn text="Transaction Type" />
+            <TableColumn text="Transaction Date" />
+            <TableColumn text="Transaction Amount" />
+            <TableColumn text="Balance After Transaction" />
+        </columns>
+    </TableView>
+</VBox>

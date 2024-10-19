@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/22"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.jetbrains.finguard.AddAccountController">
+
+    <TextField fx:id="accountNameField" promptText="Account Name" />
+
+    <ComboBox fx:id="accountTypeComboBox">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Checking" />
+                <String fx:value="Savings" />
+                <String fx:value="Investment" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+
+    <TextField fx:id="currentBalanceField" promptText="Current Balance" />
+    <DatePicker fx:id="openingDatePicker" promptText="Opening Date" />
+    <Button text="Save" onAction="#handleSaveAccount" />
+
+    <TableView fx:id="accountTable" />
+</VBox>
