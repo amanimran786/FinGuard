@@ -10,6 +10,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.List;
+
 public class HomePageController {
 
     @FXML
@@ -35,14 +37,26 @@ public class HomePageController {
 
     private final DatabaseHandler dbHandler = new DatabaseHandler(); // Mark dbHandler as final
 
+// In HomePageController.java
+
     @FXML
     public void initialize() {
-        // Initialize table columns
+        loadAccounts();
         initializeTable();
-
-        // Load initial transaction data into the table and charts
         loadTransactionData();
     }
+
+    private void loadAccounts() {
+        // Clear the ComboBox
+        accountComboBox.getItems().clear();
+
+        // Load accounts from the database and add them to the ComboBox
+        List<Account> accounts = (List<Account>) dbHandler.getAllAccounts();
+        for (Account account : accounts) {
+            accountComboBox.getItems().add(account.getAccountName());
+        }
+    }
+
 
     @FXML
     public void handleUploadTransaction() {

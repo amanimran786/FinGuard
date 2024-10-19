@@ -1,6 +1,8 @@
 package org.jetbrains.finguard;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHandler {
 
@@ -129,16 +131,64 @@ public class DatabaseHandler {
         }
     }
 
-    public void insertTransaction(int accountId, String date, double amount, String description) {
+    public void insertTransaction(int accountId, String transactionDate, double transactionAmount, String description) {
+        String sql = "INSERT INTO transactions(account_id, transaction_date, transaction_amount, description) VALUES(?, ?, ?, ?)";
 
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, accountId);
+            pstmt.setString(2, transactionDate);
+            pstmt.setDouble(3, transactionAmount);
+            pstmt.setString(4, description);
+            pstmt.executeUpdate();
+            System.out.println("Transaction inserted successfully.");
+        } catch (SQLException e) {
+            System.out.println("SQL Exception: " + e.getMessage());
+        }
     }
+
+
+
 
     public void insertAccount(String accountName, String accountType, double balance, String openingDate) {
+        String sql = "INSERT INTO accounts(name, type, balance, opening_date) VALUES(?, ?, ?, ?)";
+
+        try (Connection conn = this.connect();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setString(1, accountName);
+            pstmt.setString(2, accountType);
+            pstmt.setDouble(3, balance);
+            pstmt.setString(4, openingDate);
+            pstmt.executeUpdate();
+            System.out.println("Account inserted successfully.");
+        } catch (SQLException e) {
+            System.out.println("SQL Exception: " + e.getMessage());
+        }
+    }
+    public List<Account> getAllAccounts() {
+        List<Account> accounts = new ArrayList<>();
+        String sql = "SELECT id, name, type, balance, opening_date FROM accounts";
+
+        try (Connection conn = this.connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Account account = new Account(
+                        rs.getString("name"),
+                        rs.getString("type"),
+                        rs.getDouble("balance"),
+                        rs.getString("opening_date")
+                );
+                accounts.add(account);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("SQL Exception: " + e.getMessage());
+        }
+
+        return accounts; // Return the list of accounts
     }
 
-    public Account getAllAccounts() {
-        return null;
-    }
 
-    // Other database methods...
 }
