@@ -54,6 +54,10 @@ public class HomePageController {
         List<Account> accounts = (List<Account>) dbHandler.getAllAccounts();
         for (Account account : accounts) {
             accountComboBox.getItems().add(account.getAccountName());
+            accountComboBox.getSelectionModel().select(account.getAccountType());
+            accountComboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+
+            });
         }
     }
 
